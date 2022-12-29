@@ -4,8 +4,9 @@ const cors = require('cors');
 const port = process.env.PORT || 5000;
 const tasksRouter = require('./routes/tasks');
 
-app.use('/api/tasks', tasksRouter);
 app.use(cors());
+
+app.use('/api/tasks', tasksRouter);
 
 app.get('/api', (req, res) => {
     res.end();
