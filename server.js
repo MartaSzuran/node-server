@@ -8,8 +8,4 @@ app.use(cors());
 
 app.use('/api/tasks', tasksRouter);
 
-app.get('/api', (req, res) => {
-    res.end();
-});
-
 app.listen(port, () => console.log(`listening on port ${port}`));
