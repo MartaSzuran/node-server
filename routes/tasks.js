@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     res.json(mockupTasks);
 })
 router.post('/addNew', (req, res) => {
-    res.send('hi')
+    res.send('success');
 })
 
 module.exports = router;
