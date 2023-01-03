@@ -3,11 +3,13 @@ const app = express();
 const cors = require('cors');
 require('dotenv').config();
 const port = process.env.PORT;
-const tasksRouter = require('./routes/tasks');
+const router = require('./routes/tasks');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 
-app.use('/api/tasks', tasksRouter);
+app.use('/api/tasks', router);
 
 app.listen(port, () => console.log(`listening on port ${port}`));
