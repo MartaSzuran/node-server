@@ -8,11 +8,10 @@ const newTaskPrototype = {
     'type': 'toDo',
 };
 
-  
 router.post('/addNew', (req, res) => {
     const newTaskPayload = req.body.task;
     const newTask = Object.assign(newTaskPrototype, newTaskPayload);
-    mockupTasks.push(newTask)
+    mockupTasks.push(newTask);
     res.send('success');
 });
     
