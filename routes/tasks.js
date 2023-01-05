@@ -11,10 +11,10 @@ router.post('/addNew', (req, res) => {
 });
     
 router.put('/editTask', (req, res) => {
-    const editedTask = req.body.task;
+    const editedTask = req.body.task.id;
     mockupTasks = mockupTasks.map(task => {
-        if (task.id === parseInt(editedTask.id.id)) {
-            return editedTask.id;
+        if (task.id === editedTask.id) {
+            return editedTask;
         }
         return task;
     });
