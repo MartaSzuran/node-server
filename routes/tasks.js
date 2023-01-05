@@ -12,23 +12,22 @@ router.post('/addNew', (req, res) => {
     
 router.put('/editTask', (req, res) => {
     const editedTask = req.body.task.id;
-    mockupTasks = mockupTasks.map(task => {
+    mockupTasks.find(task => {
         if (task.id === editedTask.id) {
-            return editedTask;
+            task.title = editedTask.title
+            task.description = editedTask.description
+            task.type = editedTask.type
         }
-        return task;
     });
     res.send('success');
 });
 
 router.put('/dropTask', (req, res) => {
     const {id, dropResult} = req.body.task;
-    mockupTasks = mockupTasks.map(task => {
+    mockupTasks.find(task => {
         if (task.id === id) {
             task.type = dropResult;
-            return task;
         }
-        return task;
     });
     res.send('success');
 });
