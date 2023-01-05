@@ -14,9 +14,9 @@ router.put('/editTask', (req, res) => {
     const editedTask = req.body.task.id;
     mockupTasks.find(task => {
         if (task.id === editedTask.id) {
-            task.title = editedTask.title
-            task.description = editedTask.description
-            task.type = editedTask.type
+            task.title = editedTask.title;
+            task.description = editedTask.description;
+            task.type = editedTask.type;
         }
     });
     res.send('success');
