@@ -20,6 +20,18 @@ router.put('/editTask', (req, res) => {
     });
     res.send('success');
 });
+
+router.put('/dropTask', (req, res) => {
+    const {id, dropResult} = req.body.task;
+    mockupTasks = mockupTasks.map(task => {
+        if (task.id === id) {
+            task.type = dropResult;
+            return task;
+        }
+        return task;
+    });
+    res.send('success');
+});
     
 router.get('/', (req, res) => {
     res.json(mockupTasks);
