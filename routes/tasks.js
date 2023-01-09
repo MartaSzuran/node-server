@@ -33,7 +33,18 @@ router.put('/dropTask', (req, res) => {
 });
     
 router.get('/', (req, res) => {
-    res.json(mockupTasks);
+    const { searchValue } = req.query;
+    if (searchValue) {
+        const newTasksList = mockupTasks.filter((task) => {
+            if (task.description.toLowerCase().includes(searchValue.toLowerCase()) 
+            || task.title.toLowerCase().includes(searchValue.toLowerCase())) {
+                return task
+            }
+        })
+        res.json(newTasksList);
+    } else {
+        res.json(mockupTasks);
+    }
 });
 
 module.exports = router;
