@@ -33,18 +33,21 @@ router.put('/dropTask', (req, res) => {
 });
     
 router.get('/', (req, res) => {
-    const { searchValue } = req.query;
-    if (searchValue) {
-        const newTasksList = mockupTasks.filter((task) => {
-            if (task.description.toLowerCase().includes(searchValue.toLowerCase()) 
-            || task.title.toLowerCase().includes(searchValue.toLowerCase())) {
-                return task
-            }
-        })
-        res.json(newTasksList);
-    } else {
-        res.json(mockupTasks);
-    }
+    res.json(mockupTasks);
 });
+
+router.get('/:searchValue', (req, res) => {
+    const { searchValue } = req.params;
+    const searchValueCastomized = searchValue.slice(1);
+    const newTasksList = mockupTasks.filter((task) => {
+        const descriptionIncludes = task.description.toLowerCase().includes(searchValueCastomized.toLowerCase());
+        const titleIncludes = task.title.toLowerCase().includes(searchValueCastomized.toLowerCase());
+        if ( descriptionIncludes || titleIncludes) {
+            return task;
+        }
+    })
+    res.json(newTasksList);
+});
+
 
 module.exports = router;
