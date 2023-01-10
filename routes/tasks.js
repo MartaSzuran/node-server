@@ -38,16 +38,19 @@ router.get('/', (req, res) => {
 
 router.get('/:searchValue', (req, res) => {
     const { searchValue } = req.params;
-    const searchValueCastomized = searchValue.slice(1);
-    const newTasksList = mockupTasks.filter((task) => {
-        const descriptionIncludes = task.description.toLowerCase().includes(searchValueCastomized.toLowerCase());
-        const titleIncludes = task.title.toLowerCase().includes(searchValueCastomized.toLowerCase());
-        if ( descriptionIncludes || titleIncludes) {
-            return task;
-        }
-    })
-    res.json(newTasksList);
+    if (searchValue) {
+        const searchValueToLower = searchValue.toLowerCase();
+        const filteredTasksList = mockupTasks.filter((task) => {
+            const descriptionIncludes = task.description.toLowerCase().includes(searchValueToLower);
+            const titleIncludes = task.title.toLowerCase().includes(searchValueToLower);
+            if ( descriptionIncludes || titleIncludes) {
+                return task;
+            }
+        })
+        res.json(filteredTasksList);
+    } else {
+        res.json(mockupTasks); 
+    }
 });
-
 
 module.exports = router;
