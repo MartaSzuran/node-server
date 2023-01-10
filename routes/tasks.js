@@ -36,4 +36,21 @@ router.get('/', (req, res) => {
     res.json(mockupTasks);
 });
 
+router.get('/:searchValue', (req, res) => {
+    const { searchValue } = req.params;
+    if (searchValue) {
+        const searchValueToLower = searchValue.toLowerCase();
+        const filteredTasksList = mockupTasks.filter((task) => {
+            const descriptionIncludes = task.description.toLowerCase().includes(searchValueToLower);
+            const titleIncludes = task.title.toLowerCase().includes(searchValueToLower);
+            if ( descriptionIncludes || titleIncludes) {
+                return task;
+            }
+        })
+        res.json(filteredTasksList);
+    } else {
+        res.json(mockupTasks); 
+    }
+});
+
 module.exports = router;
