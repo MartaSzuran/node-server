@@ -12,7 +12,7 @@ app.use(cors());
 
 app.use('/api/tasks', router);
 
-app.get('/', (res, req) => {
+app.get('/', (req, res) => {
   res.send('welcome')
 });
 
