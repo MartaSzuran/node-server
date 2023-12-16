@@ -12,4 +12,8 @@ app.use(cors());
 
 app.use('/api/tasks', router);
 
+app.get('/', (res, req) => {
+  res.setEncoding('welcome')
+});
+
 app.listen(port, () => console.log(`listening on port ${port}`));
